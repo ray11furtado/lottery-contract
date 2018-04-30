@@ -2,14 +2,18 @@ pragma solidity ^0.4.17;
 contract Lottery {
     address public manager;
     address[] public players;
-    
+    mapping (address => uint) index;
+
     constructor() public {
         manager = msg.sender;
     }
     
     function enter() public payable {
         require(msg.value > .01 ether);
-        players.push(msg.sender);
+        if (index[msg.sender] == 0) {
+            players.push(msg.sender);
+        }
+        index[msg.sender] += msg.value;
     }
     
     function random() private view returns(uint256) {
