@@ -16,6 +16,7 @@ const deploy = async () => {
     .deploy({ data: bytecode }) // deploy contract
     .send({ from: accounts[0], gas: '1000000' });
   // Check where contracted ended
+  console.log('interface', inter)
   console.log('Contract deployed to', result.options.address);
 };
 
